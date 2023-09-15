@@ -60,7 +60,7 @@ class API {
 		}
 
 		// Register html, css, and js files
-		this.server.use(express.static(`${__dirname}/../src/public`));
+		this.server.use(express.static(`${__dirname}/../public`));
 		this.server.get("*", (_req, res) => {
 			res.status(404).send("Not found.");
 		});

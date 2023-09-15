@@ -2,7 +2,7 @@ import Configuration from "../src/types/Configuration";
 
 const cfg: Configuration = {
 	api: {
-		port: 3000
+		port: 4000
 	},
 	database: {
 		// Either 'sqlite' or 'mysql'
