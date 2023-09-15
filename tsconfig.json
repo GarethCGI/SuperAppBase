@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"noEmitHelpers": true,
+		"target": "ES6",
+		"moduleResolution": "Bundler",
+		"module": "ESNext",
+		"strict": true,
+		"skipLibCheck": true,
+		"allowSyntheticDefaultImports": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"types": [
+			"bun-types" // add Bun global
+		]
+	}
+}
