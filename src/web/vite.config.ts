@@ -8,10 +8,9 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: {
-			"@": "/src/web",
+			"@": "./",
 		},
 	},
-	//appType: "mpa",
 	publicDir: "/src/web/public",
 	appType: "mpa",
 });
