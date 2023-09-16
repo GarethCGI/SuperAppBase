@@ -170,4 +170,6 @@ dist
 
 src/public
 public
-
+config/*.ts
+!config/example.*.ts
+temp
