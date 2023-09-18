@@ -3,7 +3,7 @@ import express from "express";
 import Express from "express";
 import { ServerRequest } from "./types/API";
 import App from "./app";
-import { getPublicDir } from "@sab/util/run";
+import { getPublicDir, isRunningAsCompiled } from "@sab/util/run";
 export interface Req<T> extends Express.Request {
 	body: T
 }
@@ -58,11 +58,13 @@ class API {
 		for (const [file, dir] of fileRoutes) {
 			if (!file.endsWith(".js") && !file.endsWith(".ts")) continue;
 			if (file.endsWith(".map")) continue;
-			const { default: route } = await import(`${dir}/${file}`);
+			//const { default: route } = await import(`${dir}/${file}`);
+			const route = isRunningAsCompiled() ? require(`${dir}/${file}`).default : (await import(`${dir}/${file}`)).default;
 			const serverRoute = `${dir.replace(globalDirName, "")}/${file.split(".")[0]}`.replace(/\$/g, ":");
 			console.info(`Registering route ${serverRoute}`);
 			const Iroute = this.server.route(serverRoute);
 			// Register the route methods
+			
 			route.get ? Iroute.get(route.get) : null;
 			route.post ? Iroute.post(route.post) : null;
 			route.put ? Iroute.put(route.put) : null;
