@@ -31,13 +31,17 @@ class API {
 		});
 
 		//Log it all
-		this.server.use((req, _res, next) => {
+		/* this.server.use((req, _res, next) => {
 			console.info(`${req.method} ${req.url}`);
 			next();
+		}); */
+
+		this.server.get("/api-info", function (req, res) {
+			return res.send("This is an SpaceProject based API");
 		});
 
 		this.server.get("/", function (req, res) {
-			return res.send("This is an SpaceProject based API");
+			return res.redirect("/index.html");
 		});
 
 		this.registerRoutes();
