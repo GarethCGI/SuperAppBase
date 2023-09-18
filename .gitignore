@@ -168,7 +168,8 @@ dist
 .yarn/install-state.gz
 .pnp.\*
 
-src/public
+# Project specific
+
 public
 config/*.ts
 !config/example.*.ts

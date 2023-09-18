@@ -19,16 +19,13 @@ cd superappbase
 ### Install dependencies
 
 ```bash
-bun install
+npm install
 ```
-
-> **Warning**
-> bun does not install sqlite3, so you must use npm install if you want to use sqlite.
 
 ### Run the server
 
 ```bash
-bun start
+npm run start
 ```
 
 ## Development
@@ -36,7 +33,7 @@ bun start
 The project already has a dev script that runs the server with nodemon and vite
 
 ```bash
-bun dev
+npm run dev
 ```
 
 ### The most important folders for you to customize are
@@ -57,3 +54,14 @@ bun dev
 ### That's it
 
 Now you can start building your app, have fun!
+
+### Running with bun
+
+> **Warning**
+> bun does not install sqlite3, so you must use npm install if you want to use sqlite.
+
+The only needed things is:
+
+- uncomment the specified things in the .tsconfig file
+- set the type in package.json to module instead of commonjs
+- run the server with `bun run start:bun`

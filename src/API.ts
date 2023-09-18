@@ -3,6 +3,7 @@ import express from "express";
 import Express from "express";
 import { ServerRequest } from "./types/API";
 import App from "./app";
+import { getPublicDir } from "@sab/util/run";
 export interface Req<T> extends Express.Request {
 	body: T
 }
@@ -29,6 +30,12 @@ class API {
 			next();
 		});
 
+		//Log it all
+		this.server.use((req, _res, next) => {
+			console.info(`${req.method} ${req.url}`);
+			next();
+		});
+
 		this.server.get("/", function (req, res) {
 			return res.send("This is an SpaceProject based API");
 		});
@@ -43,7 +50,7 @@ class API {
 		// Load files recursively from the routes directory
 		const globalDirName = `${__dirname}/routes`.replace(/\\/g, "/");
 		const fileRoutes = await findRecursive(globalDirName);
-
+		let i = 0;
 		for (const [file, dir] of fileRoutes) {
 			if (!file.endsWith(".js") && !file.endsWith(".ts")) continue;
 			if (file.endsWith(".map")) continue;
@@ -57,14 +64,15 @@ class API {
 			route.put ? Iroute.put(route.put) : null;
 			route.delete ? Iroute.delete(route.delete) : null;
 			route.patch ? Iroute.patch(route.patch) : null;
+			i++;
 		}
 
 		// Register html, css, and js files
-		this.server.use(express.static(`${__dirname}/../public`));
+		this.server.use(express.static(getPublicDir()));
 		this.server.get("*", (_req, res) => {
 			res.status(404).send("Not found.");
 		});
-		console.info(`Registered ${fileRoutes.length} routes`);
+		console.info(`Registered ${i} routes`);
 	}
 }
 export default API;

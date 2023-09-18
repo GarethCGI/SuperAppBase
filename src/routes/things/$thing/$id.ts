@@ -1,6 +1,6 @@
 import { Response } from "express";
-import { ServerRequest } from "@/types/API";
-import { getDatabase } from "@/util/composelike";
+import { ServerRequest } from "@sab/types/API";
+import { getDatabase } from "@sab/util/composelike";
 export default {
 	async get(req: ServerRequest, res: Response) {
 		const thingname = req.params.thing;

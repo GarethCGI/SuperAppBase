@@ -2,6 +2,7 @@ import { objectSchemaFrom, validateObject } from "parzival";
 import API from "./API";
 import Configuration from "./types/Configuration";
 import SPDatabase from "./database";
+import { getRunningFileExtension } from "./util/run";
 
 class App {
 	api: API;
@@ -9,10 +10,10 @@ class App {
 	config: Configuration;
 	constructor() {
 		const configSchema = objectSchemaFrom(Configuration);
-		if (!validateObject(require("../config/index").default, configSchema)) {
+		if (!validateObject(require("../config/index.js").default, configSchema)) {
 			throw new Error("Invalid Configuration");
 		}
-		this.config = require("../config/index").default;
+		this.config = require(`../config/index.${getRunningFileExtension()}`).default;
 		this.api = new API(this);
 		this.database = new SPDatabase(
 			this.config.database

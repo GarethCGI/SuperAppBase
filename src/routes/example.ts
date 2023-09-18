@@ -3,6 +3,7 @@ import { ServerRequest } from "../types/API";
 export default {
 	async get(_req: ServerRequest, res: Response) {
 		/* This HTTP Method is usually used to get information from the server, like user information */
+		console.info("GET /example");
 		res.redirect("/index.html");
 	},
 	async post(_req: ServerRequest, res: Response) {

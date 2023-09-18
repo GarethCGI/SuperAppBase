@@ -1,33 +1,37 @@
 {
 	"compilerOptions": {
-		"noEmitHelpers": true,
+		// "module": "ES2022", // Enable when running bun
+		"module": "Node16", // Enable when running tsc
+		"esModuleInterop": true,
 		"target": "ES6",
-		"moduleResolution": "Bundler",
-		"module": "ESNext",
-		"strict": true,
-		"skipLibCheck": true,
-		"allowJs": false,
+		//"moduleResolution": "Bundler", // Enable when running bun
+		"moduleResolution": "Node16", // Enable when running tsc
+		"removeComments": true,
 		"allowSyntheticDefaultImports": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
-		"allowImportingTsExtensions": true,
-		"noEmit": true,
-		"types": [
-			"bun-types" // add Bun global
-		],
-		"baseUrl": ".",
+		// "allowImportingTsExtensions": true, // optional for bun
+		// "noEmit": true, // optional for bun
+		"strict": true,
+		"strictNullChecks": true,
+		"skipLibCheck": true,
+		"sourceMap": true,
 		"paths": {
-			"@/*": [
+			"@sab/*": [
 				"./src/*"
 			],
 		},
 		"outDir": "./dist",
+		/* "types": [
+			"bun-types"
+		] */ // Enable when running bun
 	},
 	"include": [
-		"src/**/*"
+		"./**/*.ts",
 	],
 	"exclude": [
 		"node_modules",
-		"src/web/**/*"
-	]
+		"src/web/**/*",
+		"public/**/*",
+	],
 }
